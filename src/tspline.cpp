@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 #include "C:\Users\argir\T-spline\include\tspline.h"
 
 tspline::tspline() {}
@@ -56,4 +57,34 @@ std::vector<double> tspline::evaluate(double s, double t)
     }
 
     return P;
+}
+
+void tspline::printParameterSpace()
+{
+    std::string filename("parameter_space.dat");
+    std::ofstream my_file(filename);
+
+    my_file << "variables= " << "\"x\"" << "," << "\"y\"" << "\n";
+	my_file << "zone t= " << "\"1\"" << ",i=" << len << ",j=" << len << "\n";
+
+    for (int i = 0; i < len; i++)
+    {
+		my_file << kVertices[i]._s << " " << kVertices[i]._t << "\n";
+    }
+    my_file.close();
+}
+
+void tspline::printControlPts()
+{
+    std::string filename("control_points.dat");
+    std::ofstream my_file(filename);
+
+    my_file << "variables= " << "\"x\"" << "," << "\"y\"" << "," << "\"z\"" <<"\n";
+	my_file << "zone t= " << "\"1\"" << ",i=" << len << ",j=" << len << "\n";
+
+    for (int i = 0; i < len; i++)
+    {
+		my_file << kVertices[i].cPoint[0] << " " << kVertices[i].cPoint[1] << " " << kVertices[i].cPoint[2] << "\n";
+    }
+    my_file.close();
 }

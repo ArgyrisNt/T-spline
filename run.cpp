@@ -30,18 +30,6 @@ int main()
              kVertex(0.2,1.0),
              kVertex(0.5,1.0),
              kVertex(1.0,1.0)};
-  
-  std::string filename2("test2.dat");
-  std::ofstream my_file2(filename2);
-
-  my_file2 << "variables= " << "\"x\"" << "," << "\"y\"" << "\n";
-	my_file2 << "zone t= " << "\"1\"" << ",i=" << 25 << ",j=" << 25 << "\n";
-
-  for (int i = 0; i < 25; i++)
-  {
-			my_file2 << vertices[i]._s << " " << vertices[i]._t << "\n";
-  }
-  my_file2.close();
 
   int len = sizeof(vertices) / sizeof(*vertices);
   tspline t(len, 3);
@@ -181,6 +169,8 @@ int main()
   t.kVertices[23].cPoint = {0.5,1.0,1.2};
   t.kVertices[24].cPoint = {1.0,1.0,1.1};
 
+  t.printParameterSpace();
+  t.printControlPts();
   t.updateKnotVecs();
 
   std::string filename("test.dat");

@@ -17,6 +17,8 @@ public:
     // Member functions
     void updateKnotVecs();
     std::vector<double> evaluate(double, double);
+    void printParameterSpace();
+    void printControlPts();
 
     kVertex* kVertices;
     int deg;
