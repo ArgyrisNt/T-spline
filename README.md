@@ -11,7 +11,7 @@ Parameter space
 
 T-spline surface
 
-<img src="pics/surface.png" height="200" width="200" >
+<img src="pics/T-surface.png" height="200" width="200" >
 
 
 Control points
