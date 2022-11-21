@@ -12,3 +12,8 @@ Parameter space
 T-spline surface
 
 ![](pics/T-surface.png)
+
+
+Control points
+
+![](pics/Control_points.png)
