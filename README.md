@@ -6,14 +6,14 @@ Example
 
 Parameter space
 
-![](pics/Parameter_space.png)
+<img src="pics/Parameter_space.png" height="200" width="200" >
 
 
 T-spline surface
 
-![](pics/T-surface.png)
+<img src="pics/surface.png" height="200" width="200" >
 
 
 Control points
 
-![](pics/Control_points.png)
+<img src="pics/Control_points.png" height="200" width="200" >
