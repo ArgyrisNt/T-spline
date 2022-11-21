@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <vector>
-#include "C:\Users\argir\OneDrive\Desktop\kVertex.h"
+#include "C:\Users\argir\T-spline\include\kVertex.h"
 
 class tspline
 {

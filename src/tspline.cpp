@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "C:\Users\argir\OneDrive\Desktop\tspline.h"
+#include "C:\Users\argir\T-spline\include\tspline.h"
 
 tspline::tspline() {}
 
