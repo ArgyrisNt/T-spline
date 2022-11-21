@@ -169,11 +169,11 @@ int main()
   t.kVertices[23].cPoint = {0.5,1.0,1.2};
   t.kVertices[24].cPoint = {1.0,1.0,1.1};
 
-  t.printParameterSpace();
   t.printControlPts();
   t.updateKnotVecs();
+  t.printPreImagePaper();
 
-  std::string filename("test.dat");
+  std::string filename("T-surface.dat");
   std::ofstream my_file(filename);
 
   int count = 120;

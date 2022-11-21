@@ -59,21 +59,6 @@ std::vector<double> tspline::evaluate(double s, double t)
     return P;
 }
 
-void tspline::printParameterSpace()
-{
-    std::string filename("parameter_space.dat");
-    std::ofstream my_file(filename);
-
-    my_file << "variables= " << "\"x\"" << "," << "\"y\"" << "\n";
-	my_file << "zone t= " << "\"1\"" << ",i=" << len << ",j=" << len << "\n";
-
-    for (int i = 0; i < len; i++)
-    {
-		my_file << kVertices[i]._s << " " << kVertices[i]._t << "\n";
-    }
-    my_file.close();
-}
-
 void tspline::printControlPts()
 {
     std::string filename("control_points.dat");
@@ -85,6 +70,51 @@ void tspline::printControlPts()
     for (int i = 0; i < len; i++)
     {
 		my_file << kVertices[i].cPoint[0] << " " << kVertices[i].cPoint[1] << " " << kVertices[i].cPoint[2] << "\n";
+    }
+    my_file.close();
+}
+
+void tspline::printPreImagePaper()
+{
+    std::string filename("pre_image.obj");
+    std::ofstream my_file(filename);
+
+    my_file << "# " << len << "\n";
+
+    int cnt = 0;
+    for (int i = 0; i < len; i++)
+    {
+        if (kVertices[i].top_end)
+        {
+            cnt += 2;
+            my_file << "v " << kVertices[i]._s << " " << kVertices[i]._t << "\n";
+            my_file << "v " << kVertices[i].top_end->_s << " " << kVertices[i].top_end->_t << "\n";
+            my_file << "l " << cnt-1 << " " << cnt << "\n";
+        }
+
+        if (kVertices[i].right_end)
+        {
+            cnt += 2;
+            my_file << "v " << kVertices[i]._s << " " << kVertices[i]._t << "\n";
+            my_file << "v " << kVertices[i].right_end->_s << " " << kVertices[i].right_end->_t << "\n";
+            my_file << "l " << cnt-1 << " " << cnt << "\n";
+        }
+
+        if (kVertices[i].bottom_end)
+        {
+            cnt += 2;
+            my_file << "v " << kVertices[i]._s << " " << kVertices[i]._t << "\n";
+            my_file << "v " << kVertices[i].bottom_end->_s << " " << kVertices[i].bottom_end->_t << "\n";
+            my_file << "l " << cnt-1 << " " << cnt << "\n";
+        }
+
+        if (kVertices[i].left_end)
+        {
+            cnt += 2;
+            my_file << "v " << kVertices[i]._s << " " << kVertices[i]._t << "\n";
+            my_file << "v " << kVertices[i].left_end->_s << " " << kVertices[i].left_end->_t << "\n";
+            my_file << "l " << cnt-1 << " " << cnt << "\n";
+        }
     }
     my_file.close();
 }
