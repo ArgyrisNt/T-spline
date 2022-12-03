@@ -26,7 +26,8 @@ public:
     std::pair<std::vector<double>,std::vector<double>> getKnotVec(int);
     void updateKnotVec(int);
     void print_knotVec();
-
+    void print();
+    
     // Member variables
     double _s;
     double _t;

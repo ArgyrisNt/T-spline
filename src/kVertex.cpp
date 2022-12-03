@@ -287,7 +287,7 @@ void kVertex::updateKnotVec(int deg)
 
 void kVertex::print_knotVec()
 {
-    std::cout << "knotsS: ";
+    std::cout << "\nknotsS: ";
     for (int i = 0; i < knotVec.first.size(); i++)
     {
         std::cout << knotVec.first[i] << " ";
@@ -298,4 +298,31 @@ void kVertex::print_knotVec()
         std::cout << knotVec.second[i] << " ";
     }
     std::cout << "\n\n";
+}
+
+void kVertex::print()
+{
+    std::cout << "s: " << _s;
+    std::cout << "\nt: " << _t;
+    if (top_end)
+    {
+        std::cout << "\ntop_end_s: " << top_end->_s;
+        std::cout << "\ntop_end_t: " << top_end->_t;
+    }
+    if (bottom_end)
+    {
+        std::cout << "\nbottom_end_s: " << bottom_end->_s;
+        std::cout << "\nbottom_end_t: " << bottom_end->_t;
+    }
+    if (left_end)
+    {
+        std::cout << "\nleft_end_s: " << left_end->_s;
+        std::cout << "\nleft_end_t: " << left_end->_t;
+    }
+    if (right_end)
+    {
+        std::cout << "\nright_end_s: " << right_end->_s;
+        std::cout << "\nright_end_t: " << right_end->_t;
+    }
+    print_knotVec();
 }

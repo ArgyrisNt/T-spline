@@ -5,6 +5,7 @@
 
 int main()
 {
+  bool paraview = false;
 	kVertex vertices[25] = {kVertex(0.0,0.0),
              kVertex(0.2,0.0),
              kVertex(0.4,0.0),
@@ -169,26 +170,34 @@ int main()
   t.kVertices[23].cPoint = {0.5,1.0,1.2};
   t.kVertices[24].cPoint = {1.0,1.0,1.1};
 
-  t.printControlPts();
   t.updateKnotVecs();
-  t.printPreImagePaper();
+  t.calc_faces();
+  t.generate_extensions();
+    
+  //t.printControlPts(paraview);
+  //t.printPreImagePaper(paraview);
 
-  std::string filename("T-surface.dat");
-  std::ofstream my_file(filename);
+  // std::string filename("T-surface.dat");
+  // std::ofstream my_file(filename);
 
-  int count = 120;
-  my_file << "variables= " << "\"x\"" << "," << "\"y\"" << "," << "\"z\"" << "\n";
-	my_file << "zone t= " << "\"1\"" << ",i=" << count + 1 << ",j=" << count + 1 << "\n";
+  // int count = 20;
+  // my_file << "variables= " << "\"x\"" << "," << "\"y\"" << "," << "\"z\"" << "\n";
+	// my_file << "zone t= " << "\"1\"" << ",i=" << count + 1 << ",j=" << count + 1 << "\n";
 
-  for (int i = 0; i <= count; i++)
-  {
-    for (int j = 0; j <= count; j++)
-    {
-      std::vector<double> P = t.evaluate((1.0/count) * i, (1.0/count) * j);
-			my_file << P[0] << " " << P[1] << " " << P[2] << "\n";
-    }
-  }
-  my_file.close();
+  // for (int i = 0; i <= count; i++)
+  // {
+  //   for (int j = 0; j <= count; j++)
+  //   {
+  //     std::vector<double> P = t.evaluate((1.0/count) * i, (1.0/count) * j);
+	// 		my_file << P[0] << " " << P[1] << " " << P[2] << "\n";
+  //   }
+  // }
+  // my_file.close();
+
+  // if (paraview)
+  // {
+  //   plot(filename);
+  // }
 
 	return 0;
 }

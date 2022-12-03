@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <windows.h>
 #include "C:\Users\argir\T-spline\include\kVertex.h"
 
 class tspline
@@ -17,11 +18,20 @@ public:
     // Member functions
     void updateKnotVecs();
     std::vector<double> evaluate(double, double);
-    void printControlPts();
-    void printPreImagePaper();
+    void printControlPts(bool);
+    void printPreImagePaper(bool);
+    void print();
+    void calc_faces();
+    bool is_bound(kVertex);
+    void calc_Tjunctions();
+    void generate_extensions();
 
     kVertex* kVertices;
+    kVertex* fVertices;
     int deg;
+    std::vector<std::vector<double>> faces;
+    std::vector<int> Tjunctions;
+    int f_len;
 
 private:
     int len;
@@ -113,4 +123,9 @@ double basisFunTSpl(double x, std::vector<double> knots, int deg, int knotspan)
     N = basisRecur(x, knots, deg, knotspan);
     
     return N;
+}
+
+void plot(std::string filename)
+{
+    ShellExecute(GetDesktopWindow(), "open", filename.c_str(), NULL, NULL, SW_SHOWNORMAL);
 }
