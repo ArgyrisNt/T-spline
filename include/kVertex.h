@@ -1,44 +1,44 @@
-#pragma once
+#ifndef H_KVERTEX
+#define H_KVERTEX
 
-#include <iostream>
-#include <vector>
+#include "hEdge.h"
 
 class kVertex
 {
 public:
-    // Constructors
-    kVertex();
-    kVertex(double, double);
-    kVertex(double, double, std::pair<std::vector<double>,std::vector<double>>&);
-    kVertex(kVertex&);
+    kVertex() : s(0.0), t(0.0), top(nullptr), right(nullptr), bottom(nullptr), left(nullptr) {}
+    kVertex(double _s, double _t) : s(_s), t(_t), top(nullptr), right(nullptr), bottom(nullptr), left(nullptr) {}
+    kVertex(double _s, double _t, std::pair<std::vector<double>, std::vector<double>>& _knotVec) 
+        : s(_s), t(_t), top(nullptr), right(nullptr), bottom(nullptr), left(nullptr), knotVec(_knotVec) {}
+    kVertex(const kVertex& v)
+    { s = v.s; t = v.t; top = v.top; right = v.right; bottom = v.bottom; left = v.left; knotVec = v.knotVec; cPoint = v.cPoint; }
 
-    // Destructor
     ~kVertex() {}
 
-    // Overload operators
-    kVertex& operator=(kVertex&);
+    kVertex& operator=(const kVertex& v)
+    { s = v.s; t = v.t; top = v.top; right = v.right; bottom = v.bottom; left = v.left; knotVec = v.knotVec; cPoint = v.cPoint; return *this;}
 
-    // Member functions
-    std::pair<double,kVertex*> shootLeft(kVertex&);
-    std::pair<double,kVertex*> shootRight(kVertex&);
-    std::pair<double,kVertex*> shootTop(kVertex&);
-    std::pair<double,kVertex*> shootBottom(kVertex&);
-    std::pair<std::vector<double>,std::vector<double>> getKnotVec(int);
-    void updateKnotVec(int);
-    void print_knotVec();
+    void cnctTop(kVertex &v) { top = new hEdge(this, &v); }
+    void cnctRight(kVertex &v) { right = new hEdge(this, &v); }
+    void cnctBottom(kVertex &v) { bottom = new hEdge(this, &v); }
+    void cnctLeft(kVertex &v) { left = new hEdge(this, &v); }
+
+    void updateKnotVec(int deg);
+    std::pair<std::vector<double>, std::vector<double>> getKnotVec(int deg);
+    std::pair<double, kVertex*> shootLeft(kVertex& startVert);
+    std::pair<double, kVertex*> shootRight(kVertex& startVert);
+    std::pair<double, kVertex*> shootTop(kVertex& startVert);
+    std::pair<double, kVertex*> shootBottom(kVertex& startVert);
+
     void print();
-    
-    // Member variables
-    double _s;
-    double _t;
-    kVertex* top_start = NULL;
-    kVertex* top_end = NULL;
-    kVertex* right_start = NULL;
-    kVertex* right_end = NULL;
-    kVertex* bottom_start = NULL;
-    kVertex* bottom_end = NULL;
-    kVertex* left_start = NULL;
-    kVertex* left_end = NULL;
-    std::pair<std::vector<double>,std::vector<double>> knotVec;
-    std::vector<double> cPoint{0.0,0.0,0.0};
+    void print_knotVec();
+
+    double s, t;
+    hEdge *top, *right, *bottom, *left;
+    std::pair<std::vector<double>, std::vector<double>> knotVec;
+    std::vector<double> cPoint;
 };
+
+#include "../src/kVertex.cpp"
+
+#endif
